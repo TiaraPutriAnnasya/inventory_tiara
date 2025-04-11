@@ -32,6 +32,8 @@
 <table class="table">
   <thead>
     <tr>
+      
+      <th scope="col">no</th>
       <th scope="col">ID Barang</th>
       <th scope="col">Nama Barang</th>
       <th scope="col">ID Jenis</th>

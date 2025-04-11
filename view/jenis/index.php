@@ -37,54 +37,40 @@
         <table class="table table-striped table-bordered">
     <thead> 
         <tr> 
+            <th scope="col">no</th>
             <th scope="col">id_jenis</th>
             <th scope="col">nama_jenis</th>
         </tr>
     </thead>
     <tbody> 
-        <tr>
-        <th scrope="row" >1</th>
-        <td>celana</td>
-        <td></td>
-        <td>
-        <a href=""class="btn-warning">Edit</a>
-        <a href=""class="btn-warning">Hapus</a>
-        </td>
-        </tr>
+    <?php
+                include "../../config/koneksi.php";
+                $query = mysqli_query($conn, "SELECT * FROM jenis ");
+                $no = 1;
 
-        <tr>
-        <th scope="row">2</th>
-        <td>baju</td>
-        <td></td>
-        <td>
-        <a href=""class="btn-warning">Edit</a>
-        <a href=""class="btn-warning">Hapus</a>
-        </td>
-        </tr>
+                if (mysqli_num_rows($query) > 0) {
+                    while ($result = mysqli_fetch_assoc($query)) {
+                        ?>
+                        <tr>
+                            <td><?php echo $no; ?></td>
+                            <td><?php echo $result['id_jenis']; ?></td>
+                            <td><?php echo $result['nama_jenis']; ?></td>
 
-        <tr>
-        <th scope="row">3</th >
-        <td>sepatu</td>
-        <td></td>
-        <td>
-        <a href=""class="btn-warning">Edit</a>
-        <a href=""class="btn-warning">Hapus</a>
-        </td>
-        </tr>
+                            <td>
+                            <a href="view_edit.php?id=<?php echo $result['id_jenis'] ?>" class="btn btn-warning">Edit</a>
+                            <a href="hapus.php?id=<?php echo $result['id_jenis'] ?>" 
+                            onclick="return confirm('Kamu Yakin???')" 
+                            class="btn btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                        <?php
+                        $no++;
+                    }
+                } else {
+                    echo "<tr><td colspan='7' class='text-center'>Data siswa tidak ditemukan</td></tr>";
+                }
+                ?>
 
-        <tr>
-        <th scope="row">4</th >
-        <td>krudung</td>
-        <td></td>
-        <td>
-        <a href=""class="btn-warning">Edit</a>
-        <a href=""class="btn-warning">Hapus</a>
-        </td>
-        </tr>
-        <tr>
-
-
-        </td>
         </table>
     </tbody>
 </div>
